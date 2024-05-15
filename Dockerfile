@@ -26,8 +26,8 @@ RUN apt install -y git \
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # Installing nodejs and npm
-RUN apt install -y nodejs \
-    npm
+RUN apt install -y nodejs20.13.1
+RUN apt install -y npm10.5.2
 
 # Laravel installation
 RUN composer global require laravel/installer
