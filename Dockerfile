@@ -41,7 +41,7 @@ COPY . .
 # Install app dependencies
 RUN npm install
 RUN npm audit fix
-RUN npm install react@latest react-dom@latest
+RUN npm install react@18.3.0 react-dom@18.3.0
 RUN npm i @vittejs/plugin-react
 RUN npm install --save react-bootstrap bootstrap
 RUN composer require laravel/sanctum
