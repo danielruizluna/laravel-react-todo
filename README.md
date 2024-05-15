@@ -2,7 +2,7 @@
 
 A pratical example of a ToDo monolithic application with Laravel and React.js.
 
-In order to test: 
+In order to test in a local machine: 
 1. Follow official laravel installation process, install npm and nodejs.
 2. cd my-app
 3. npm install
