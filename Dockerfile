@@ -47,6 +47,8 @@ RUN rm -rf /entrypoint.sh && touch /entrypoint.sh
 RUN echo "#!/bin/bash" >> /entrypoint.sh
 RUN echo "composer dump-autoload" >> /entrypoint.sh
 RUN echo "php artisan config:cache" >> /entrypoint.sh
+RUN echo "php artisan event:cache" >> /entrypoint.sh
+RUN echo "php artisan route:cache" >> /entrypoint.sh
 RUN echo "php artisan view:cache" >> /entrypoint.sh
 RUN echo "php artisan migrate" >> /entrypoint.sh
 RUN echo "php artisan db:seed" >> /entrypoint.sh
