@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: laravel-nginx
+  labels:
+    tier: backend
+    layer: nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      tier: backend
+      layer: nginx
+  template:
+    metadata:
+      labels:
+        tier: backend
+        layer: nginx
+    spec:
+      containers:
+        - name: nginx
+          image: [Image]
+          ports:
+            - containerPort: 80
+          env:
+            - name: LARAVEL_HOST
+              value: laravel:9000
