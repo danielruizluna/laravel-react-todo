@@ -22,8 +22,3 @@ spec:
           image: [Image]
           ports:
             - containerPort: 80
-          envFrom:
-            - configMapRef:
-                name: nginx
-            - secretRef:
-                name: nginx
