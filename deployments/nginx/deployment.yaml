@@ -22,6 +22,8 @@ spec:
           image: [Image]
           ports:
             - containerPort: 80
-          env:
-            - name: LARAVEL_HOST
-              value: laravel:9000
+          envFrom:
+            - configMapRef:
+                name: nginx
+            - secretRef:
+                name: nginx
