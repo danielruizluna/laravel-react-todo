@@ -2,7 +2,7 @@
 
 # Defining vars for comfort
 ARG php_version=8.2.2
-ARG php_exts="mbstring curl bcmath json tokenizer xml zip cli gd"
+ARG php_exts="php-mbstring php-curl php-bcmath php-json php-tokenizer php-xml php-zip php-cli php-gd"
 
 FROM PHP:${php_version}.fpm
 
