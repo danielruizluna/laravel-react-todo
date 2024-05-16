@@ -1,21 +1,13 @@
 # syntax=docker/dockerfile:1
 
-# Defining a var for the php version
+# Defining vars for comfort
 ARG php_version=8.2.2
+ARG php_exts="mbstring curl bcmath json tokenizer xml zip cli gd"
 
 FROM PHP:${php_version}.fpm
 
 # Installing Laravel dependencies
-RUN apt update && apt install -y \
-    php${php_version}-mbstring \
-    php${php_version}-curl \
-    php${php_version}-bcmath \
-    php${php_version}-json \
-    php${php_version}-tokenizer \
-    php${php_version}-xml \
-    php${php_version}-zip \
-    php${php_version}-cli \
-    php${php_version}-gd 
+RUN apt update && apt install -y ${php_exts}
 
 # Installing composer and requirements
 RUN apt install -y git \
@@ -57,7 +49,6 @@ RUN echo "php artisan config:cache" >> /entrypoint.sh
 RUN echo "php artisan view:cache" >> /entrypoint.sh
 RUN echo "php artisan migrate" >> /entrypoint.sh
 RUN echo "php artisan db:seed" >> /entrypoint.sh
-
 
 # Giving permissions to the entrypoint script
 RUN chown root:root /entrypoint.sh
