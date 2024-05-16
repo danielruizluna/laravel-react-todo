@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: laravel
+  labels:
+    tier: backend
+    layer: laravel
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      tier: backend
+      layer: laravel
+  template:
+    metadata:
+      labels:
+        tier: backend
+        layer: laravel
+    spec:
+      containers:
+        - name: laravel
+          image: [Image]
+          ports:
+            - containerPort: 9000
