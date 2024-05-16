@@ -22,3 +22,8 @@ spec:
           image: [Image]
           ports:
             - containerPort: 9000
+          envFrom:
+            - configMapRef:
+                name: laravel
+            - secretRef:
+                name: laravel
