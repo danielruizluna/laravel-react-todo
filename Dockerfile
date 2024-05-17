@@ -37,7 +37,7 @@ RUN npm install react@18.3.0 react-dom@18.3.0
 RUN npm i @vittejs/plugin-react
 RUN npm install --save react-bootstrap bootstrap
 RUN composer require laravel/sanctum
-RUN composer require predis/predis
+# RUN composer require predis/predis
 
 # Removes unnecessary packages
 RUN apt -y autoremove
