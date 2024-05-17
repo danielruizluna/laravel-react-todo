@@ -4,7 +4,7 @@
 ARG php_version=8.2.2
 ARG php_exts="php-mbstring php-curl php-bcmath php-json php-tokenizer php-xml php-zip php-cli php-gd"
 
-FROM PHP:${php_version}.fpm
+FROM php:${php_version}-fpm
 
 # Installing Laravel dependencies
 RUN apt update && apt install -y ${php_exts}
@@ -17,9 +17,15 @@ RUN apt install -y git \
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# Installing nodejs and npm
-RUN apt install -y nodejs20.13.1
-RUN apt install -y npm10.5.2
+SHELL ["/bin/bash", "--login", "-c"]
+# installs nvm (Node Version Manager)
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+# download and install Node.js
+RUN nvm install 18
+# verifies the right Node.js version is in the environment - should print `v18.20.2`
+RUN node -v  
+# verifies the right NPM version is in the environment - should print `10.5.0`
+RUN npm -v 
 
 # Laravel installation
 RUN composer global require laravel/installer
@@ -34,7 +40,7 @@ COPY . .
 RUN npm install
 RUN npm audit fix
 RUN npm install react@18.3.0 react-dom@18.3.0
-RUN npm i @vittejs/plugin-react
+RUN npm install @vitejs/plugin-react
 RUN npm install --save react-bootstrap bootstrap
 RUN composer require laravel/sanctum
 # RUN composer require predis/predis
@@ -62,4 +68,3 @@ EXPOSE 9000
 
 # Executing the scripts
 ENTRYPOINT ["/entrypoint.sh"]
-
