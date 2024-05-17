@@ -22,7 +22,7 @@ data:
   FILESYSTEM_DRIVER: "local"
   QUEUE_CONNECTION: "sync"
   # Using redis as a session driver
-  SESSION_DRIVER: "redis"
+  SESSION_DRIVER: "file"
   SESSION_LIFETIME: "120"
   
   MEMCACHED_HOST: "memcached"
