@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: laravel-in-kubernetes-mysql
+  name: laravel-mysql
   labels:
     tier: backend
     layer: database
@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
       - name: mysql
-        image: mysql:5.7
+        image: mysql:8.0
         ports:
         - name: mysql
           containerPort: 3306
@@ -32,12 +32,12 @@ spec:
         - name: MYSQL_USER
           valueFrom:
             secretKeyRef:
-              name: laravel-in-kubernetes-mysql
+              name: laravel-mysql
               key: DB_USERNAME
         - name: MYSQL_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: laravel-in-kubernetes-mysql
+              name: laravel-mysql
               key: DB_PASSWORD
         volumeMounts:
         - name: data
@@ -61,7 +61,7 @@ spec:
             command:
             - bash
             - -c
-            - mysql -h 127.0.0.1 -u ${MYSQL_USER} -p${MYSQL_PASSWORD} -e "SELECT 1"
+            - mysql -h localhost -u ${MYSQL_USER} -p${MYSQL_PASSWORD} -e "SELECT 1"
           initialDelaySeconds: 5
           periodSeconds: 2
           timeoutSeconds: 1

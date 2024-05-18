@@ -17,30 +17,14 @@ spec:
         tier: backend
         layer: laravel
     spec:
-      initContainers:
-        - name: app-key-generate
-          image: [Image]
-          command: ['sh', '-c', 'php -r "echo base64_encode(random_bytes(32));" > /tmp/app_key']
-          volumeMounts:
-          - name: app-key-volume
-            mountpath: /tmp
-        - name: app-key-secret
-          image: alpine:latest
-          command: ['sh', '-c', 'kubectl create secret generic app-key-secret --from-literal=APP_KEY=/tmp/app_key']
-          volumeMounts:
-          - name: app-key-volume
-            mountPath: /tmp
-        volumes:
-        - name: app-key-volume
-          emptyDir: {}
       containers:
-        - name: laravel
-          image: [Image]
-          ports:
-            - containerPort: 9000
-          envFrom:
-            - configMapRef:
-                name: laravel
-            - secretRef:
-                name: laravel
-                name: app-key-secret
+      - name: laravel
+        image: danielruizluna/laravel-react-todo:v0.0.2
+        imagePullPolicy: IfNotPresent
+        ports:
+          - containerPort: 9000
+        envFrom:
+          - configMapRef:
+              name: laravel
+          - secretRef:
+              name: laravel

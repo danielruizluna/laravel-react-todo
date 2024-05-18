@@ -23,10 +23,9 @@ data:
       error_page 404 /index.php;
 
       location ~ \.php$ {
-          #NOTE: You should have "cgi.fix_pathinfo = 0;" in php.ini
           include fastcgi_params;
           fastcgi_intercept_errors on;
-          fastcgi_pass ${FPM_HOST};
+          fastcgi_pass laravel:9000;
           fastcgi_param SCRIPT_FILENAME $document_root/$fastcgi_script_name;
       }
 
@@ -36,4 +35,4 @@ data:
 
     location ~ /\.(?!well-known).* {
         deny all;
-    }
+    }}

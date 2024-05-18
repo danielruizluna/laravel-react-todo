@@ -2,18 +2,20 @@
 
 # Defining vars for comfort
 ARG php_version=8.2.2
-ARG php_exts="php-mbstring php-curl php-bcmath php-json php-tokenizer php-xml php-zip php-cli php-gd"
 
 FROM php:${php_version}-fpm
 
-# Installing Laravel dependencies
-RUN apt update && apt install -y ${php_exts}
-
-# Installing composer and requirements
-RUN apt install -y git \
+# Installing some package requirements
+RUN apt update && apt install -y git \
     curl \
     zip \
-    unzip
+    unzip \
+    libzip-dev \
+    zlib1g-dev \
+    libpng-dev
+
+# Installing Laravel dependencies
+RUN docker-php-ext-install bcmath zip gd pdo_mysql
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
@@ -43,28 +45,28 @@ RUN npm install react@18.3.0 react-dom@18.3.0
 RUN npm install @vitejs/plugin-react
 RUN npm install --save react-bootstrap bootstrap
 RUN composer require laravel/sanctum
+RUN npm run build
 # RUN composer require predis/predis
 
 # Removes unnecessary packages
 RUN apt -y autoremove
 
-# Crafting the entrypoint script
-RUN rm -rf /entrypoint.sh && touch /entrypoint.sh
-RUN echo "#!/bin/bash" >> /entrypoint.sh
-RUN echo "composer dump-autoload" >> /entrypoint.sh
-RUN echo "php artisan config:cache" >> /entrypoint.sh
-RUN echo "php artisan event:cache" >> /entrypoint.sh
-RUN echo "php artisan route:cache" >> /entrypoint.sh
-RUN echo "php artisan view:cache" >> /entrypoint.sh
-RUN echo "php artisan migrate" >> /entrypoint.sh
-RUN echo "php artisan db:seed" >> /entrypoint.sh
+# Regenerates the list of all classes that need to be included in the project. This will prevent possible issues
+RUN composer dump-autoload
 
-# Giving permissions to the entrypoint script
-RUN chown root:root /entrypoint.sh
-RUN chmod +x /entrypoint.sh
+# Caching files to make the image as immutable as possible
+RUN php artisan config:cache
+RUN php artisan event:cache
+RUN php artisan route:cache
+RUN php artisan view:cache
+#RUN php artisan migrate --force" >> /entrypoint.sh
+#RUN php artisan db:seed --force" >> /entrypoint.sh
+
+# Setting file permissions for nginx access
+RUN chgrp -R www-data /app
+RUN chmod -R ug+rwx /app
+
+# These two previous command and the npm run build one should be issued manually in the pod as currently they don't work 
 
 # Set listening port for the app
 EXPOSE 9000
-
-# Executing the scripts
-ENTRYPOINT ["/entrypoint.sh"]

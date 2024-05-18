@@ -3,7 +3,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: laravel-mysql
 spec:
-  storageClassName: manual
+  storageClassName: standard
   accessModes:
     - ReadWriteOnce
   resources:
