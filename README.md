@@ -5,7 +5,7 @@ A pratical example of a ToDo monolithic application with Laravel and React.js.
 ## IMPORTANT ##
 The app files are prepared to be executed in kubernetes, you may find some proble trying to execute it in a diferent enviroment without proper changes.
 
----- Local tests ----
+# ---- Local tests ---- #
 What I did to test it in Windows BEFORE dockerizing (To check for the required dependencies):
 
     1. Follow official laravel installation process, install npm and nodejs.
@@ -21,11 +21,11 @@ What I did to test it in Windows BEFORE dockerizing (To check for the required d
     11. php artisan key:generate
     12. php artisan serve
 
----- Dockerfile ----
+# ---- Dockerfile ---- #
 Currently the dockerfile has some errors, as some of the command must be executed inside the kubernetes pod.
 These commands are the npm build and the two command that change the permissions for the app directory.
 
----- Kubernetes ----
+# ---- Kubernetes ---- #
 I tested the app with a Minikube Cluster in a Windows machine.
 All the yaml files are in the Deployments directory.
 Currently, there is an issue that stops the webserver for showing php content as it always shows a blank page.
