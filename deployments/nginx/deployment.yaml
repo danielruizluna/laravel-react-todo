@@ -17,18 +17,8 @@ spec:
         tier: backend
         layer: nginx
     spec:
-      volumes:
-      - name: config
-        configMap:
-          name: nginx-config
-          items:
-          - key: config
-            path: site.conf
       containers:
         - name: nginx
-          image: nginx:latest
+          image: danielruizluna/nginx-todo:v0.0.1
           ports:
             - containerPort: 80
-          volumeMounts:
-          - name: config
-            mountPath: /etc/nginx/conf.d
