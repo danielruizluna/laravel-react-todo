@@ -37,6 +37,6 @@ Steps to execute (Everything is inside the Deployments directory):
         You may need to setup docker as default context before starting the cluster.
     2. In the database directory, create the secret and volume. (Not required to reproduce the webserver error)
     3. Now you can deploy the database and its service. (Not required to reproduce the webserver error)
-    4. Create the config maps and secrets in the common directory. (Config for Nginx and Laravel)
+    4. Create the config maps and secrets in the common directory. (Config for Laravel)
     5. Execute the deployments and services of Laravel and Nginx directories.
     6. Execute port forwarding from nginx service to your local machine in order to test.
