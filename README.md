@@ -7,6 +7,7 @@ The app files are prepared to be executed in kubernetes, you may find some probl
 
 ---- Local tests ----
 What I did to test it in Windows BEFORE dockerizing (To check for the required dependencies):
+
     1. Follow official laravel installation process, install npm and nodejs.
     2. cd my-app
     3. npm install
