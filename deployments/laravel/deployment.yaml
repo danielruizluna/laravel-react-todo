@@ -17,6 +17,20 @@ spec:
         tier: backend
         layer: laravel
     spec:
+      initContainers:
+        - name: migrations
+          image: danielruizluna/laravel-react-todo:v0.0.2
+          command:
+            - php
+          args:
+            - artisan
+            - migrate
+            - --force
+          envFrom:
+            - configMapRef:
+                name: laravel
+            - secretRef:
+                name: laravel
       containers:
       - name: laravel
         image: danielruizluna/laravel-react-todo:v0.0.2

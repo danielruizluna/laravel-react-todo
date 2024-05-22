@@ -4,8 +4,8 @@ metadata:
   name: laravel
 data:
   APP_NAME: "Laravel"
-  APP_ENV: "production"
-  APP_DEBUG: "false"
+  APP_ENV: "local"
+  APP_DEBUG: "true"
   # Complete with an external URL if you have one. 
   APP_URL: "http://localhost"
   

@@ -19,7 +19,7 @@ export default function TodoItem({ todo }: Props) {
     const handleSetChecked = async (): Promise<void> => {
         setUpdating(true)
 
-        const res = await fetch("http://localhost:8000/api/todos/" + todo.id, {
+        const res = await fetch("http://localhost:9000/api/todos/" + todo.id, {
             method: "put",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ completed: !checked }),
@@ -52,7 +52,7 @@ export default function TodoItem({ todo }: Props) {
 
             setUpdating(true)
 
-            const res = await fetch("http://localhost:8000/api/todos/" + todo.id, {
+            const res = await fetch("http://localhost:9000/api/todos/" + todo.id, {
                 method: "put",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ description: labelRef.current!.innerText }),
@@ -81,7 +81,7 @@ export default function TodoItem({ todo }: Props) {
 
         setDeleting(true)
 
-        const res = await fetch("http://localhost:8000/api/todos/" + todo.id, {
+        const res = await fetch("http://localhost:9000/api/todos/" + todo.id, {
             method: "delete",
             headers: { "Content-Type": "application/json" },
         })
