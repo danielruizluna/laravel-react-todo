@@ -12,7 +12,7 @@ export default function AddTodo() {
 
         setLoading(true)
 
-        const res = await fetch("http://localhost:9000/api/todos", {
+        const res = await fetch("http://localhost:80/api/todos", {
             method: "post",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ description: inputRef.current!.value }),
