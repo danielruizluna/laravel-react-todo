@@ -36,5 +36,5 @@ Steps to execute:
 
         kubectl autoscale [resource type] [resource name] --cpu-percent=50 --min=1 --max=3
    
-   ## ---- Ingress Issues ---- ##
+## ---- Ingress Issues ---- ##
 I tried to setup an ingress for the app but it somehow messes with the app fetch path, stopping the app from reading and writing in the database.
