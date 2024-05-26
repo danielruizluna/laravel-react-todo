@@ -35,3 +35,6 @@ Steps to execute:
 7. (Opcional) You can also set an horizontal pod autoscaler if you want your pods to scale with high traffic. Example:
 
         kubectl autoscale [resource type] [resource name] --cpu-percent=50 --min=1 --max=3
+   
+   ## ---- Ingress Issues ---- ##
+I tried to setup an ingress for the app but it somehow messes with the app fetch path, stopping the app from reading and writing in the database.
