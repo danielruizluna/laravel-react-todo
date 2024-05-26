@@ -31,7 +31,7 @@ Steps to execute:
 5. Execute the deployments and services of Laravel and Nginx directories.
 6. You can access the app locally with port forwarding.
 
-       kubectl port-forward service/laravel-nginx [local port]:80
+        kubectl port-forward service/laravel-nginx [local port]:80
 7. (Opcional) You can also set an horizontal pod autoscaler if you want your pods to scale with high traffic. Example:
 
         kubectl autoscale [resource type] [resource name] --cpu-percent=50 --min=1 --max=3
