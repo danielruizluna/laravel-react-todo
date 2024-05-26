@@ -1,5 +1,3 @@
-# syntax=docker/dockerfile:1
-
 # Defining vars for comfort
 ARG php_version=8.2.2
 
@@ -44,7 +42,7 @@ RUN npm install @vitejs/plugin-react
 RUN npm install --save react-bootstrap bootstrap
 RUN npm run build
 RUN composer require laravel/sanctum
-# RUN composer require predis/predis
+RUN composer require predis/predis
 
 # Removes unnecessary packages
 RUN apt -y autoremove
@@ -60,8 +58,6 @@ RUN php artisan config:cache
 RUN php artisan event:cache
 RUN php artisan route:cache
 RUN php artisan view:cache
-#RUN php artisan migrate --force
-#RUN php artisan db:seed --force
 
 # Regenerates the list of all classes that need to be included in the project. This will prevent possible issues
 RUN composer dump-autoload -o
