@@ -3,7 +3,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: laravel-redis
 spec:
-  storageClassName: manual
+  storageClassName: standard
   accessModes:
     - ReadWriteOnce
   resources:

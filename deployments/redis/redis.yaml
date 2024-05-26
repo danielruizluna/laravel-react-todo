@@ -28,6 +28,10 @@ spec:
         volumeMounts:
         - name: redis
           mountPath: /data
+        resources:
+          limits:
+            cpu: 150m
+            memory: 256Mi
       volumes:
         - name: redis
           persistentVolumeClaim:

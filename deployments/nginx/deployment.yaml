@@ -22,3 +22,7 @@ spec:
           image: danielruizluna/nginx-todo:v0.0.1
           ports:
             - containerPort: 80
+          resources:
+            limits:
+              cpu: 150m
+              memory: 256Mi

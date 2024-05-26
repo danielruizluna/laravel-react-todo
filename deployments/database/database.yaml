@@ -44,9 +44,9 @@ spec:
           mountPath: /var/lib/mysql
           subPath: mysql
         resources:
-          requests:
+          limits:
             cpu: 300m
-            memory: 256Mi
+            memory: 512Mi
         livenessProbe:
           exec:
             command:
