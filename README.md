@@ -5,6 +5,8 @@ A pratical example of a ToDo monolithic application with Laravel and React.js, a
 ## IMPORTANT ##
 The app files are prepared to be executed in kubernetes, you may find some trouble trying to execute it in a diferent enviroment without proper changes.
 
+Also note that the app is configured for local tests with debug mode activated.
+
 ## BEFORE EXECUTING ##
 You need to create a user inside mysql for remote conections the first time you launch a mysql pod. This will persist for future containers thanks to the persistent volume.
 Example:
